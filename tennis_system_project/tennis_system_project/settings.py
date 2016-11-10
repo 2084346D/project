@@ -14,6 +14,8 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +28,6 @@ SECRET_KEY = '&%109av17ii73=%t%@ld!vog2!k(^0&3m4)up!n74_*t570p!n'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
 # Application definition
 
@@ -120,3 +121,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [STATIC_DIR,]
