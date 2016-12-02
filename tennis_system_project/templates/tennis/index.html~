@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+{% load staticfiles %}
+
 <html>
     
     <head>
@@ -11,6 +13,7 @@
         <div>
             Home page <br />
             <strong>{{ boldmessage }}</strong><br />
+            <img src="{% static "images/tennisball.jpg" %}" alt="Picture of ball" />
         </div>
 	<div>
             <a href="/tennis/about/"> About </a> <br />

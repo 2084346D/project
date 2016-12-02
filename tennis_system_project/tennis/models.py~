@@ -8,7 +8,7 @@ class UserProfile(models.Model):
 
     about = models.URLField(blank=True)
 
-    def _unicode_(self):
+    def _str_(self):
         return self.user.username
 
 # Person stores first name, surname, email, and 

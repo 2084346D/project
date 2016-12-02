@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+    <head>
+        <title>
+            Western Tennis Club
+            {% block title_block %}
+            {% endblock %}
+        </title>
+    </head>
+    <body>
+        <div>
+            {% block body_block %}
+            {% endblock %}
+        </div>
+        <hr />
+        <div>
+            <ul>
+                <li><a href="{%url 'about'%}">About</a></li>
+                <li><a href="{%url 'index'%}">Home</a></li>
+                <li><a href="{%url 'register'%}">Sign Up</a></li>
+            </ul>
+        </div>
+    </body>
+</html>
