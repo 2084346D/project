@@ -16,9 +16,14 @@
             <img src="{% static "images/tennisball.jpg" %}" alt="Picture of ball" />
         </div>
 	<div>
-            <a href="/tennis/about/"> About </a>
-            <br>
-            <a href="/tennis/register/"> Register </a>
+            <ul>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}"> Logout </a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}"> Sign In </a></li>
+                <li><a href="{% url 'register' %}"> Sign Up</a></li>
+            {% endif %}
+            </ul>
  <br />
         </div>
     </body>

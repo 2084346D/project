@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from tennis.forms import UserForm, UserProfileForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     context_dict = {'boldmessage': "Look at this tennis ball"}
@@ -85,3 +86,9 @@ def user_login(request):
     else:
         # no context variables so pass blank dictionary
         return render(request, 'tennis/login.html', {})
+
+@login_required
+def user_logout(request):
+    logout(request)
+    # take back to home
+    return HttpResponseRedirect(reverse('index'))
