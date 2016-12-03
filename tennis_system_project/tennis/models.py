@@ -6,13 +6,13 @@ from django.contrib.auth.models import User
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
 
-    about = models.URLField(blank=True)
+    emergcon1 = models.CharField(max_length=128, blank=False)
+    emergcon2 = models.CharField(max_length=128, blank=False)
 
     def _unicode_(self):
         return self.user.username
 
-# Person stores first name, surname, email, and 
-# emergency contacts
+#Person stores first name, surname, email, and emergency contacts
 class Person(models.Model):
     fname = models.CharField(max_length=30)
     sname = models.CharField(max_length=30)

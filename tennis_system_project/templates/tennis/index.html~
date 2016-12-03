@@ -16,7 +16,9 @@
             <img src="{% static "images/tennisball.jpg" %}" alt="Picture of ball" />
         </div>
 	<div>
-            <a href="/tennis/about/"> About </a> <br />
+            <a href="/tennis/about/"> About </a>
+            <a href="/tennis/register/"> Register </a>
+ <br />
         </div>
     </body>
 
