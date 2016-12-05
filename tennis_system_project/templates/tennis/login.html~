@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html>
+{% extends 'tennis/base.html' %}
+{% load staticfiles %}
 
-   <head>
-       Login
-   </head>
+{% block body_block%}
+
+   {% block title_block %}
+        Log in
+    {% endblock %}
 
     <body>
         <h1>Login here!</h1>
         <form id="login_form" method="post" action="{% url 'login' %}">
             {% csrf_token %}
-            Email: <input type="text" name="email" value="" size="50" />
+            Username: <input type="text" name="username" value="" size="50" />
             <br />
             Password: <input type="password" name="password" value="" size="50" />
             <br />
@@ -17,4 +19,5 @@
         </form>
         <a href="/tennis/"> Home </a>
     </body>
-</html>
+
+{% endblock %}

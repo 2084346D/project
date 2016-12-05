@@ -1,12 +1,14 @@
-<!DOCTYPE html>
-<html>
+{% extends 'tennis/base.html' %}
+{% load staticfiles %}
 
-   <head>
-       Register
-   </head>
+{% block body_block%}
+
+   {% block title_block %}
+        Registration
+    {% endblock %}
 
     <body>
-        <h1>About Page</h1>
+        <h1>Register Here</h1>
         {% if registered %}
             <strong> Thank you for registering</strong>
             <a href="{% url 'index' %}"> Return to homepage </a><br />
@@ -25,9 +27,8 @@
             <input type="submit" name="submit" value="Register" />
         </form>
         {% endif %}
-        <a href="/tennis/"> Home </a>
     </body>
-</html>
+{% endblock %}
         
         
 

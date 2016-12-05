@@ -1,9 +1,11 @@
-<!DOCTYPE html>
-<html>
+{% extends 'tennis/base.html' %}
+{% load staticfiles %}
 
-   <head>
-       Login
-   </head>
+{% block body_block%}
+
+   {% block title_block %}
+        Log in
+    {% endblock %}
 
     <body>
         <h1>Login here!</h1>
@@ -15,6 +17,6 @@
             <br />
             <input type="submit" value="submit" />
         </form>
-        <a href="/tennis/"> Home </a>
     </body>
-</html>
+
+{% endblock %}

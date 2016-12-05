@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-
+{% extends 'tennis/base.html' %}
 {% load staticfiles %}
 
 <html>
     
-    <head>
-        <title>Tennis System</title>
-    </head>
+    {% block title_block %}
+        Tennis System
+    {% endblock %}
 
     <body>
         <h1> This is a header </h1>
@@ -23,6 +22,7 @@
                 <li><a href="{% url 'login' %}"> Sign In </a></li>
                 <li><a href="{% url 'register' %}"> Sign Up</a></li>
             {% endif %}
+                <li><a href="{% url 'about' %}"> About </a></li>
             </ul>
  <br />
         </div>
