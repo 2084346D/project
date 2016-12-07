@@ -13,3 +13,15 @@ class UserProfileForm(forms.ModelForm):
    class Meta:
        model = UserProfile
        fields = ('emergcon1', 'emergcon2')
+
+class PlayerForm(forms.ModelForm):
+   fname = forms.CharField(max_length=30)
+   sname = forms.CharField(max_length=30)
+   medicalcons = forms.CharField(max_length=128)
+   btmno = forms.IntegerField()
+   dob = forms.DateField()
+
+   class Meta:
+      model = Player
+      # exclude foreign key field
+      exclude = ('person')

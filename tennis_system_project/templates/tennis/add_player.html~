@@ -1,0 +1,28 @@
+{% extends 'tennis/base.html' %}
+{% load staticfiles %}
+
+{% block body_block%}
+    
+    {% block title_block %}
+        Add a Player
+    {% endblock %}
+
+    <body>
+        <h1> Add a Player </h1>
+        <div>
+            <form id="player_form" method="post" action="tennis/add_player/">
+               {% csrf_token %}
+               {% for hidden in form.hidden_fields %}
+                  {{ hidden }}
+               {% endfor %}
+               {% for field in form.visible_fields %}
+                  {% field.errors %}
+                  {% field %}
+               {% endfor %}
+               <input type="submit" name="submit" value="Add Player"/>
+             </form>
+        </div>
+	
+    </body>
+
+{% endblock %}

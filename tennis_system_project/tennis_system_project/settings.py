@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tennis',
+    'registration'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -123,3 +124,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR,]
+
+# Registration
+# If true users can register
+REGISTRATION_OPEN = True
+# One week activation window
+ACCOUNT_ACTIVATION_DAYS = 7
+# If true, user is automatically logged in
+REGISTRATION_AUTO_LOGIN = True
+# redirect here when successfully logged in
+LOGIN_REDIRECT_URL = '/tennis/'
+# redirect url for when a user is trying to access restricted pages
+# without being logged in
+LOGIN_URL = '/accounts/login/'

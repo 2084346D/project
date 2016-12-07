@@ -12,19 +12,11 @@ class UserProfile(models.Model):
     def _unicode_(self):
         return self.user.username
 
-#Person stores first name, surname, email, and emergency contacts
-class Person(models.Model):
-    fname = models.CharField(max_length=30)
-    sname = models.CharField(max_length=30)
-    email = models.CharField(max_length=128)
-    emrgcon1 = models.CharField(max_length=128)
-    emrgcon2 = models.CharField(max_length=128)
-
-# Player stores which person they're associated with,
+# Player stores which person they're associated with (via user object),
 # first name, surname, medical info, BTM number and 
 # date of birth
 class Player(models.Model):
-    person = models.ForeignKey(Person)
+    person = models.ForeignKey(User)
     fname = models.CharField(max_length=30)
     sname = models.CharField(max_length=30)
     medicalcons = models.CharField(max_length=128)

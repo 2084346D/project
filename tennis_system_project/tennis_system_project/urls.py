@@ -10,4 +10,5 @@ urlpatterns = [
     # to be handled with the tennis application
     url(r'^tennis/', include('tennis.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
 ]
