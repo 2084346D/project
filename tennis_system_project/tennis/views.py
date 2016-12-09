@@ -100,8 +100,10 @@ def add_player(request):
    if request.method == 'POST':
       form = PlayerForm(request.POST)
       if form.is_valid():
-         form.save(commit=True)
-         return HttpResponse("Player successfully added")
+         player = form.save(commit=False)
+         player.person = request.user
+         player.save()
+         return HttpResponseRedirect(reverse('index'))
       else:
          print(form.errors)
    

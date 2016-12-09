@@ -15,11 +15,11 @@ class UserProfileForm(forms.ModelForm):
        fields = ('emergcon1', 'emergcon2')
 
 class PlayerForm(forms.ModelForm):
-   fname = forms.CharField(max_length=30)
-   sname = forms.CharField(max_length=30)
-   medicalcons = forms.CharField(max_length=128)
-   btmno = forms.IntegerField()
-   dob = forms.DateField()
+   fname = forms.CharField(max_length=30, label='First Name')
+   sname = forms.CharField(max_length=30, label='Surname')
+   medicalcons = forms.CharField(max_length=128, label='Medical Conditions')
+   btmno = forms.IntegerField(label='BTM Number', required=False)
+   dob = forms.DateField(label='Date of Birth')
 
    class Meta:
       model = Player

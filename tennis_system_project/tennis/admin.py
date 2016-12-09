@@ -7,3 +7,4 @@ admin.site.register(Camp)
 admin.site.register(Day)
 admin.site.register(Session)
 admin.site.register(Attendance)
+
