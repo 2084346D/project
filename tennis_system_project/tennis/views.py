@@ -4,6 +4,7 @@ from tennis.forms import UserForm, UserProfileForm, PlayerForm
 from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
+from tennis.models import Player
 
 def index(request):
     context_dict = {'boldmessage': "Look at this tennis ball"}
