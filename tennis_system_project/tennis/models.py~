@@ -23,8 +23,8 @@ class Player(models.Model):
     btmno = models.IntegerField()
     dob = models.DateField()
 
-    def calc_group():
-       today = datetime.datetime.now()
+    def calc_group(self):
+       today = datetime.date.now()
        # winter season, 31st March
        ageup1 = date(3, 31)
        # summer season 31st August
