@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from tennis.forms import UserForm, UserProfileForm
+from tennis.forms import UserForm, UserProfileForm, PlayerForm
 from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
@@ -92,4 +92,19 @@ def user_logout(request):
     logout(request)
     # take back to home
     return HttpResponseRedirect(reverse('index'))
-    
+
+@login_required
+def add_player(request):
+   form = PlayerForm()
+
+   if request.method == 'POST':
+      form = PlayerForm(request.POST)
+      if form.is_valid():
+         player = form.save(commit=False)
+         player.person = request.user
+         player.save()
+         return HttpResponseRedirect(reverse('index'))
+      else:
+         print(form.errors)
+   
+   return render(request, 'tennis/add_player.html', {'form': form})
