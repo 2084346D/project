@@ -24,26 +24,25 @@ class Player(models.Model):
     dob = models.DateField()
 
     def calc_group(self):
-       today = datetime.date.now()
-       # winter season, 31st March
-       ageup1 = date(3, 31)
-       # summer season 31st August
-       ageup2 = date(8, 31)
-       # if todays month is between september and march
-       # calculate age on March 31st
-       # if month is april to august, 
-       # calculate age on 31st august
-       if (today.month>=9 or today.month<=3):
-          age1 = today.year-dob.year-((ageup1.month, ageup1.day) < (dob.month, dob.day))
-       elif (today.month>=4 and today.month<=9):
-          age2 = today.year-dob.year-((ageup2.month, ageup2.day) < (dob.month, dob.day)) 
-       #age = today.year-dob.year-((today.month, today.day) < (dob.month, dob.day))
-       if ((age1>=5 and age1<=7) and (age2>=5 and age2<=7)):
-          return "red"
-       elif ((age1>=8 and age1<=9) or (age2>=8 and age2<=9)):
-          return "orange"
-       elif (age1>=10 or age2>=10):
-          return "green"
+       today = datetime.datetime.now()
+       if today.month >= 9:
+           season_end = datetime.date(today.year+1,3,31)
+       elif today.month <= 3:
+           season_end = datetime.date(today.year,3,31)
+       else:
+           season_end = datetime.date(today.year,8,31)
+       age_in_years = season_end.year - self.dob.year
+       if self.dob.month > season_end.month:
+           age_in_years -= 1
+
+       if age_in_years>=5 and age_in_years<=7:
+           return "red"
+       elif age_in_years>=8 and age_in_years<=9:
+           return "orange"
+       elif age_in_years>=10:
+           return "green"
+  
+    group = property(calc_group)
 
 # main camp object storing camp name
 class Camp(models.Model):
