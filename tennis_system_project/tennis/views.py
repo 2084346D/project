@@ -2,12 +2,20 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from tennis.forms import UserForm, UserProfileForm, PlayerForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.admin.views.decorators import staff_member_required
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from tennis.models import Player
 
+@staff_member_required
+def test_view(request):
+    return HttpResponse('HELLO!')
+
 def index(request):
     context_dict = {'boldmessage': "Look at this tennis ball"}
+    if request.user.is_authenticated:
+        players = request.user.player_set.all()
+        context_dict['players'] = players
     return render(request, 'tennis/index.html', context=context_dict)
 
 def about(request):

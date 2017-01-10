@@ -14,6 +14,13 @@
             <strong>{{ boldmessage }}</strong><br />
             <img src="{% static "images/tennisball.jpg" %}" alt="Picture of ball" />
         </div>
+        {% if players %}
+            <ul>
+            {% for player in players %}
+                <li>{{player.fname}},{{player.group}}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
 	
     </body>
 
