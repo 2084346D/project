@@ -1,6 +1,9 @@
 from django import forms
 from django.contrib.auth.models import User
 from tennis.models import Player, Camp, Day, Session, Attendance, UserProfile
+import datetime
+from django.forms.extras.widgets import SelectDateWidget
+from django.forms import ModelForm, Form
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -19,9 +22,9 @@ class PlayerForm(forms.ModelForm):
    sname = forms.CharField(max_length=30, label='Surname')
    medicalcons = forms.CharField(max_length=128, label='Medical Conditions')
    btmno = forms.IntegerField(label='BTM Number', required=False)
-   dob = forms.DateField(label='Date of Birth')
+   dob = forms.DateField(widget=SelectDateWidget, label='Date of Birth')
 
    class Meta:
       model = Player
       # exclude foreign key field
-      exclude('person',)
+      exclude = ('person',)
