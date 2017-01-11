@@ -22,7 +22,7 @@ class PlayerForm(forms.ModelForm):
    sname = forms.CharField(max_length=30, label='Surname')
    medicalcons = forms.CharField(max_length=128, label='Medical Conditions')
    btmno = forms.IntegerField(label='BTM Number', required=False)
-   dob = forms.DateField(widget=SelectDateWidget(years=[1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012]), label='Date of Birth')
+   dob = forms.DateField(widget=SelectDateWidget(years=range(1917,datetime.datetime.now().year), label='Date of Birth')
 
    class Meta:
       model = Player
