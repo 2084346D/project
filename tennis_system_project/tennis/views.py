@@ -13,9 +13,6 @@ def test_view(request):
 
 def index(request):
     context_dict = {'boldmessage': "Look at this tennis ball"}
-    if request.user.is_authenticated:
-        players = request.user.player_set.all()
-        context_dict['players'] = players
     return render(request, 'tennis/index.html', context=context_dict)
 
 def about(request):
@@ -117,3 +114,7 @@ def add_player(request):
          print(form.errors)
    
    return render(request, 'tennis/add_player.html', {'form': form})
+
+@login_required
+def make_booking(request):
+    return render(request, 'tennis/make_booking.html')
