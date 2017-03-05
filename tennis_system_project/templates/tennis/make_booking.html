@@ -9,7 +9,13 @@
     <body>
         <h1> Events </h1>
         <div>
-            No current events <br />
+            {% if events %}
+                {% for event in events %}
+                   <li>{{ event.name }}</li>
+                {% endfor %}
+            {% else %}
+                No current events
+            {% endif %}
         </div>
     </body>
 

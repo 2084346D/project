@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
-from tennis.models import Player
+from tennis.models import Player, Camp
 
 @staff_member_required
 def test_view(request):
@@ -117,4 +117,6 @@ def add_player(request):
 
 @login_required
 def make_booking(request):
-    return HttpResponse('No current events')
+    event_list = Camp.objects
+    context_dict = {'events': event_list}
+    return render(request, 'tennis/make_booking.html', context_dict)
