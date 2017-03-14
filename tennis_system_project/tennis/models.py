@@ -47,27 +47,27 @@ class Player(models.Model):
   
     group = property(calc_group)
 
-# main camp object storing camp name
-class Camp(models.Model):
-    name = models.CharField(max_length=128)
+# main event object storing event name
+class Event(models.Model):
+    eName = models.CharField(max_length=128)
 
-# object for each day of the linked camp, stores the date
+# object for each day of the linked event, stores the date
 # of that day
 class Day(models.Model):
-    camp = models.ForeignKey(Camp)
+    lEvent = models.ForeignKey(Event)
     date = models.DateField
 
 # session object, one for each morning and each afternoon
-# should this have fks to camp and day?
+# should this have fks to event and day?
 class Session(models.Model):
     day = models.ForeignKey(Day)
     timeofday = models.CharField(max_length=30)
 
-# link table which can generate who is attending the camp
+# link table which can generate who is attending the event
 # on a given day
 class Attendance(models.Model):
     player = models.ForeignKey(Player)
-    session = models.ForeignKey(Session)
+    event = models.ForeignKey(Event)
 
 
     

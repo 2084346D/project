@@ -10,7 +10,7 @@
     <body>
         <h1> Add a Player </h1>
         <div>
-            <form id="player_form" method="post" action="tennis/add_player/">
+            <form id="player_form" method="post" action="/tennis/add_player/">
                {% csrf_token %}
                {% for hidden in form.hidden_fields %}
                   {{ hidden }}

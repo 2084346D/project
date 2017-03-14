@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from tennis.models import Player, Camp, Day, Session, Attendance, UserProfile
+from tennis.models import Player, Event, Day, Session, Attendance, UserProfile
 import datetime
 from django.forms.extras.widgets import SelectDateWidget
 from django.forms import ModelForm, Form
@@ -28,3 +28,10 @@ class PlayerForm(forms.ModelForm):
       model = Player
       # exclude foreign key field
       exclude = ('person',)
+
+class EventForm(forms.ModelForm):
+    event = forms.ModelChoiceField(queryset=Event.objects.all(), required=True, label='Event')
+
+    class Meta:
+        model = Attendance
+        exclude = ('player',)

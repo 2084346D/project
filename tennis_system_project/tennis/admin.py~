@@ -1,14 +1,5 @@
 from django.contrib import admin
-from tennis.models import UserProfile, Player, Camp, Day, Session, Attendance
-
-#class PlayerAdmin(admin.ModelAdmin):
-  # exclude = ('person',)
-  # list_display = ('fname', 'sname', 'person')
-
-   #def save_model(self, request, obj, form, change):
-     # if not change:
-     #    obj.person = request.user
-      #obj.save()
+from tennis.models import UserProfile, Player, Event, Day, Session, Attendance
 
 admin.site.register(UserProfile)
 admin.site.register(Player)

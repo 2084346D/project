@@ -7,13 +7,19 @@
     {% endblock %}
 
     <body>
-        <h1> Events </h1>
-        {% if events %}
-            {% for event in events %}
-               <li>{{ event.name }}</li>
-            {% endfor %}
+        <h1> Book an Event </h1>
         <div>
-            No current events <br />
+            <form id="event_form" method="post" action="/tennis/make_booking/">
+               {% csrf_token %}
+               {% for hidden in event_form.hidden_fields %}
+                  {{ hidden }}
+               {% endfor %}
+               {% for field in event_form.visible_fields %}
+                  {{field.errors}}
+               {% endfor %}
+               <p>{{ event_form.event.label_tag }} {{ event_form.event }}</p>
+               <input type="submit" name="book" value="Book"/>
+             </form>
         </div>
     </body>
 

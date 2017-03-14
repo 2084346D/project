@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from tennis.forms import UserForm, UserProfileForm, PlayerForm
+from tennis.forms import UserForm, UserProfileForm, PlayerForm, EventForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
-from tennis.models import Player, Camp
+from tennis.models import Player, Event
 
 @staff_member_required
 def test_view(request):
@@ -117,6 +117,17 @@ def add_player(request):
 
 @login_required
 def make_booking(request):
-    event_list = Camp.objects
-    context_dict = {'events': event_list}
-    return render(request, 'tennis/make_booking.html', context_dict)
+    form = EventForm()
+
+    if request.method == 'POST':
+       event_form = EventForm(request.POST)
+       if form.is_valid():
+          event = event_form.save()
+          event.save()
+       else:
+            # invalid form, print problems to terminal
+            print(event_form.errors)
+    else:
+         # not POST so render blank forms
+         event_form = EventForm()
+    return render(request, 'tennis/make_booking.html', {'event_form': event_form})
