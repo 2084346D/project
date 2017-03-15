@@ -37,3 +37,8 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Attendance
         exclude = ('player',)
+
+class AddEventForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ('name',)

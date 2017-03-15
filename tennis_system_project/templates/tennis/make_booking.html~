@@ -17,7 +17,7 @@
                {% for field in event_form.visible_fields %}
                   {{field.errors}}
                {% endfor %}
-               <p>{{ event_form.event.label_tag }} {{ event_form.event }}</p>
+               <p>{{ event_form.eName.label_tag }} {{ event_form.eName }}</p>
                <input type="submit" name="book" value="Book"/>
              </form>
         </div>

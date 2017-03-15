@@ -54,7 +54,7 @@ class Event(models.Model):
 # object for each day of the linked event, stores the date
 # of that day
 class Day(models.Model):
-    lEvent = models.ForeignKey(Event)
+    linkEvent = models.ForeignKey(Event, null=True)
     date = models.DateField
 
 # session object, one for each morning and each afternoon
@@ -67,7 +67,7 @@ class Session(models.Model):
 # on a given day
 class Attendance(models.Model):
     player = models.ForeignKey(Player)
-    event = models.ForeignKey(Event)
+    event = models.ForeignKey(Event, null=True)
 
 
     

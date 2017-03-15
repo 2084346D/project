@@ -7,10 +7,6 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from tennis.models import Player, Event
 
-@staff_member_required
-def test_view(request):
-    return HttpResponse('HELLO!')
-
 def index(request):
     context_dict = {'boldmessage': "Look at this tennis ball"}
     return render(request, 'tennis/index.html', context=context_dict)
@@ -122,7 +118,8 @@ def make_booking(request):
     if request.method == 'POST':
        event_form = EventForm(request.POST)
        if form.is_valid():
-          event = event_form.save()
+          event = event_form.save(commit=False)
+          person.player = request.user
           event.save()
        else:
             # invalid form, print problems to terminal
@@ -131,3 +128,17 @@ def make_booking(request):
          # not POST so render blank forms
          event_form = EventForm()
     return render(request, 'tennis/make_booking.html', {'event_form': event_form})
+
+@staff_member_required
+def make_event(request):
+
+   if request.method == 'POST':
+      add_form = AddEventForm(request.POST)
+      if form.is_valid():
+          newEvent = add_form.save()
+          newEvent.save()
+      else:
+          print(add_form.errors)
+   else:
+       add_form = AddEventForm()
+   return render(request, 'tennis/make_event.html', {'add_form': add_form})

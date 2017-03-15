@@ -10,11 +10,8 @@
     <body>
         <h1> Welcome to the Western Tennis Club </h1>
         <div>
-            {% if !user.is_authenticated %}
-               Please log in to get started.
-            Home page <br />
-            <strong>{{ boldmessage }}</strong><br />
-            <img src="{% static "images/tennisball.jpg" %}" alt="Picture of ball" />
+            Log in to get started.
+            
         </div>
         {% if players %}
             <ul>

@@ -1,0 +1,26 @@
+{% extends 'tennis/base.html' %}
+
+{% block body_block%}
+    
+    {% block title_block %}
+        Make a New Event
+    {% endblock %}
+
+    <body>
+        <h1> Make an Event </h1>
+        <div>
+            <form id="add_form" method="post" action="/tennis/make_event/">
+               {% csrf_token %}
+               {% for hidden in add_form.hidden_fields %}
+                  {{ hidden }}
+               {% endfor %}
+               {% for field in add_form.visible_fields %}
+                  {{field.errors}}
+               {% endfor %}
+               <p>{{ add_form.event.label_tag }} {{ add_form.event }}</p>
+               <input type="submit" name="add" value="Add"/>
+             </form>
+        </div>
+    </body>
+
+{% endblock %}
