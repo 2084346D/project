@@ -1,21 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from tennis.forms import UserForm, UserProfileForm, PlayerForm
+from tennis.forms import UserForm, UserProfileForm, PlayerForm, EventForm, AddEventForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
-from tennis.models import Player
-
-@staff_member_required
-def test_view(request):
-    return HttpResponse('HELLO!')
+from tennis.models import Player, Event
 
 def index(request):
     context_dict = {'boldmessage': "Look at this tennis ball"}
-    if request.user.is_authenticated:
-        players = request.user.player_set.all()
-        context_dict['players'] = players
     return render(request, 'tennis/index.html', context=context_dict)
 
 def about(request):
@@ -117,3 +110,37 @@ def add_player(request):
          print(form.errors)
    
    return render(request, 'tennis/add_player.html', {'form': form})
+
+@login_required
+def make_booking(request):
+    form = EventForm()
+
+    if request.method == 'POST':
+       event_form = EventForm(request.POST)
+       if form.is_valid():
+          event = event_form.save(commit=False)
+          person.player = request.user
+          event.save()
+       else:
+            # invalid form, print problems to terminal
+            print(event_form.errors)
+    else:
+         # not POST so render blank forms
+         event_form = EventForm()
+    return render(request, 'tennis/make_booking.html', {'event_form': event_form})
+
+@staff_member_required
+def make_event(request):
+   form = AddEventForm()
+
+   if request.method == 'POST':
+      add_form = AddEventForm(request.POST)
+      if form.is_valid():
+          newEvent = add_form.save()
+          newEvent.save()
+          return HttpResponseRedirect(reverse('index'))
+      else:
+          print(add_form.errors)
+   else:
+       add_form = AddEventForm()
+   return render(request, 'tennis/make_event.html', {'add_form': add_form})
