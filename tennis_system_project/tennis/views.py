@@ -138,6 +138,7 @@ def make_event(request):
       if form.is_valid():
           newEvent = add_form.save()
           newEvent.save()
+          return HttpResponseRedirect(reverse('index'))
       else:
           print(add_form.errors)
    else:
