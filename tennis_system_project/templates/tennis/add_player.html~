@@ -9,6 +9,9 @@
 
     <body>
         <h1> Add a Player </h1>
+        <br/>
+        Fields marked with a * are required
+        <br/>
         <div>
             <form id="player_form" method="post" action="/tennis/add_player/">
                {% csrf_token %}
@@ -23,7 +26,7 @@
                <p>{{ form.medicalcons.label_tag }} {{ form.medicalcons }}</p>
                <p>{{ form.btmno.label_tag }} {{ form.btmno }}</p>
                <p>{{ form.dob.label_tag }} {{ form.dob }}</p>
-               <input type="submit" name="submit" value="Add_Player"/>
+               <input type="submit" name="submit" value="Add Player"/>
              </form>
         </div>
 	

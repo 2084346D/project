@@ -1,19 +1,28 @@
-{% extends 'tennis/bootstrap_starter.html' %}
+{% extends 'tennis/base.html' %}
 {% load staticfiles %}
 
 {% block body_block%}
     
     {% block title_block %}
-        Tennis System
+        Western Tennis Club
     {% endblock %}
 
     <body>
-        <h1> This is a header </h1>
+        <h1> Welcome to the Western Tennis Club </h1>
         <div>
+            {% if !user.is_authenticated %}
+               Please log in to get started.
             Home page <br />
             <strong>{{ boldmessage }}</strong><br />
             <img src="{% static "images/tennisball.jpg" %}" alt="Picture of ball" />
         </div>
+        {% if players %}
+            <ul>
+            {% for player in players %}
+                <li>{{player.fname}},{{player.group}}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
 	
     </body>
 
