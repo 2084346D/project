@@ -117,10 +117,15 @@ def make_booking(request):
 
     if request.method == 'POST':
        event_form = EventForm(request.POST)
-       if form.is_valid():
+       print "HELLO"
+       if event_form.is_valid():
+          print "VALID"
+
           event = event_form.save(commit=False)
-          person.player = request.user
+          player = request.user.player_set.all()[0]
+          event.player = player
           event.save()
+          # Consider rendering a different page
        else:
             # invalid form, print problems to terminal
             print(event_form.errors)
@@ -135,7 +140,7 @@ def make_event(request):
 
    if request.method == 'POST':
       add_form = AddEventForm(request.POST)
-      if form.is_valid():
+      if add_form.is_valid():
           newEvent = add_form.save()
           newEvent.save()
           return HttpResponseRedirect(reverse('index'))

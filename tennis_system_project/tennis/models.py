@@ -50,6 +50,10 @@ class Player(models.Model):
 # main event object storing event name
 class Event(models.Model):
     eName = models.CharField(max_length=128)
+    def __str__(self):
+      return self.eName
+    def __unicode__(self):
+      return str(self)
 
 # object for each day of the linked event, stores the date
 # of that day
@@ -66,7 +70,7 @@ class Session(models.Model):
 # link table which can generate who is attending the event
 # on a given day
 class Attendance(models.Model):
-    player = models.ForeignKey(Player)
+    player = models.ForeignKey(Player, null=True)
     event = models.ForeignKey(Event, null=True)
 
 
