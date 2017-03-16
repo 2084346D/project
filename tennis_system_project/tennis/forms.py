@@ -16,8 +16,10 @@ class UserProfileForm(forms.ModelForm):
    class Meta:
        model = UserProfile
        fields = ('emergcon1', 'emergcon2')
-       emergcon1 = forms.CharField(max_length=128, label='Emergency Contact 1')
-       emergcon2 = forms.CharField(max_length=128, label='Emergency Contact 2')
+       labels = {
+          'emergcon1': ('Emergency Contact Number'),
+          'emergcon2': ('Emergency Contact Number 2')
+       }
 
 class PlayerForm(forms.ModelForm):
    fname = forms.CharField(max_length=30, label='First Name*')
@@ -42,3 +44,6 @@ class AddEventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = ('eName',)
+        labels = {
+           'eName': ('Event Name')
+        }

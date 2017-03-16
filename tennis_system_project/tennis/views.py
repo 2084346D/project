@@ -149,3 +149,6 @@ def make_event(request):
    else:
        add_form = AddEventForm()
    return render(request, 'tennis/make_event.html', {'add_form': add_form})
+
+#@staff_memeber_required
+#def change_colour(request):
