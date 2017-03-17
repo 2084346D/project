@@ -20,7 +20,7 @@ class Player(models.Model):
     fname = models.CharField(max_length=30)
     sname = models.CharField(max_length=30)
     medicalcons = models.CharField(max_length=128)
-    btmno = models.IntegerField()
+    btmno = models.IntegerField(null=True, blank=True)
     dob = models.DateField()
 
     def calc_group(self):

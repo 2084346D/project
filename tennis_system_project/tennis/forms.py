@@ -4,6 +4,7 @@ from tennis.models import Player, Event, Day, Session, Attendance, UserProfile
 import datetime
 from django.forms.extras.widgets import SelectDateWidget
 from django.forms import ModelForm, Form
+from django.core.exceptions import ValidationError
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -21,6 +22,18 @@ class UserProfileForm(forms.ModelForm):
           'emergcon2': ('Emergency Contact Number 2')
        }
 
+       def clean(self):
+        if emergcon1[:1] != '0' or '+':
+           raise ValidationError(
+               _('%(emergcon1)s is not a valid phone number'),
+               params={'emergcon1': emergcon1},
+           )
+        if emergcon2[:1] != '0' or '+':
+           raise ValidationError(
+               _('%(emergcon2)s is not a valid phone number'),
+               params={'emergcon2': emergcon2},
+           )
+
 class PlayerForm(forms.ModelForm):
    fname = forms.CharField(max_length=30, label='First Name*')
    sname = forms.CharField(max_length=30, label='Surname*')
@@ -32,6 +45,9 @@ class PlayerForm(forms.ModelForm):
       model = Player
       # exclude foreign key field
       exclude = ('person',)
+   
+   def clean_btmno(self):
+      return self.cleaned_data['btmno'] or None
 
 class EventForm(forms.ModelForm):
     event = forms.ModelChoiceField(queryset=Event.objects.all(), required=True, label='Event')
