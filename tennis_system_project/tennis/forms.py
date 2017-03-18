@@ -25,7 +25,6 @@ class UserProfileForm(forms.ModelForm):
 
    def clean_emergcon1(self):
       emergcon1 = self.cleaned_data['emergcon1']
-      print (emergcon1)
       if emergcon1[:1] != '0' or '+':
          raise ValidationError(
              _('%(emergcon1)s is not a valid phone number'),
