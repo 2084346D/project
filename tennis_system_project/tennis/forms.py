@@ -25,7 +25,7 @@ class UserProfileForm(forms.ModelForm):
 
    def clean_emergcon1(self):
       emergcon1 = self.cleaned_data['emergcon1']
-      if emergcon1[:1] != '0' or '+':
+      if emergcon1[:1] not in ['0', '+']:
          raise ValidationError(
              _('%(emergcon1)s is not a valid phone number'),
              params={'emergcon1': emergcon1},
@@ -34,7 +34,7 @@ class UserProfileForm(forms.ModelForm):
 
    def clean_emergcon2(self):
       emergcon2 = self.cleaned_data['emergcon2']
-      if emergcon2[:1] != '0' or '+':
+      if emergcon2[:1] not in ['0', '+']:
          raise ValidationError(
              _('%(emergcon2)s is not a valid phone number'),
              params={'emergcon2': emergcon2},
