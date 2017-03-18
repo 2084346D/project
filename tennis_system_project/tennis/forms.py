@@ -5,6 +5,7 @@ import datetime
 from django.forms.extras.widgets import SelectDateWidget
 from django.forms import ModelForm, Form
 from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext_lazy as _
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -22,17 +23,24 @@ class UserProfileForm(forms.ModelForm):
           'emergcon2': ('Emergency Contact Number 2')
        }
 
-       def clean(self):
-        if emergcon1[:1] != '0' or '+':
-           raise ValidationError(
-               _('%(emergcon1)s is not a valid phone number'),
-               params={'emergcon1': emergcon1},
-           )
-        if emergcon2[:1] != '0' or '+':
-           raise ValidationError(
-               _('%(emergcon2)s is not a valid phone number'),
-               params={'emergcon2': emergcon2},
-           )
+   def clean_emergcon1(self):
+      emergcon1 = self.cleaned_data['emergcon1']
+      print (emergcon1)
+      if emergcon1[:1] != '0' or '+':
+         raise ValidationError(
+             _('%(emergcon1)s is not a valid phone number'),
+             params={'emergcon1': emergcon1},
+         )
+      return emergcon1
+
+   def clean_emergcon2(self):
+      emergcon2 = self.cleaned_data['emergcon2']
+      if emergcon2[:1] != '0' or '+':
+         raise ValidationError(
+             _('%(emergcon2)s is not a valid phone number'),
+             params={'emergcon2': emergcon2},
+         )
+      return emergcon2
 
 class PlayerForm(forms.ModelForm):
    fname = forms.CharField(max_length=30, label='First Name*')

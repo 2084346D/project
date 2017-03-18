@@ -11,6 +11,8 @@ class UserProfile(models.Model):
 
     def _unicode_(self):
         return self.user.username
+        return self.emergcon1
+        return self.emergcon2
 
 # Player stores which person they're associated with (via user object),
 # first name, surname, medical info, BTM number and 
