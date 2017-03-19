@@ -11,6 +11,8 @@ class UserProfile(models.Model):
 
     def _unicode_(self):
         return self.user.username
+        return self.emergcon1
+        return self.emergcon2
 
 # Player stores which person they're associated with (via user object),
 # first name, surname, medical info, BTM number and 
@@ -39,7 +41,7 @@ class Player(models.Model):
            return "red"
        elif age_in_years>=8 and age_in_years<=9:
            return "orange"
-       elif age_in_years>=10 and age_in_years<=11:
+       elif age_in_years==10 or age_in_years==11:
            return "green"
        elif age_in_years>=12:
            return "yellow"

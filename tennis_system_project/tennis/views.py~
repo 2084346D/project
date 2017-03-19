@@ -6,6 +6,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from tennis.models import Player, Event
+from django.contrib import messages
 
 def index(request):
     context_dict = {'boldmessage': "Look at this tennis ball"}
@@ -126,6 +127,8 @@ def make_booking(request):
           event.player = player
           event.save()
           # Consider rendering a different page
+          messages.success(request, 'Your booking was successful!')
+          return HttpResponseRedirect(reverse('index'))
        else:
             # invalid form, print problems to terminal
             print(event_form.errors)
@@ -150,5 +153,5 @@ def make_event(request):
        add_form = AddEventForm()
    return render(request, 'tennis/make_event.html', {'add_form': add_form})
 
-@staff_memeber_required
-def change_colour(request):
+#@staff_memeber_required
+#def change_colour(request):

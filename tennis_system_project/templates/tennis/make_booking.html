@@ -8,6 +8,8 @@
 
     <body>
         <h1> Book an Event </h1>
+        If booking is sucessful you will be redirected to the home page
+        <br>
         <div>
             <form id="event_form" method="post" action="/tennis/make_booking/">
                {% csrf_token %}
@@ -21,6 +23,13 @@
                <input type="submit" name="book" value="Book"/>
              </form>
         </div>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
     </body>
 
 {% endblock %}

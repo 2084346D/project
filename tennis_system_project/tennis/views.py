@@ -6,6 +6,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from tennis.models import Player, Event
+from django.contrib import messages
 
 def index(request):
     context_dict = {'boldmessage': "Look at this tennis ball"}
@@ -126,6 +127,7 @@ def make_booking(request):
           event.player = player
           event.save()
           # Consider rendering a different page
+          messages.success(request, 'Your booking was successful!')
        else:
             # invalid form, print problems to terminal
             print(event_form.errors)

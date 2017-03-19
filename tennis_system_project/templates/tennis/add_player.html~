@@ -9,7 +9,6 @@
 
     <body>
         <h1> Add a Player </h1>
-        <br/>
         Fields marked with a * are required
         <br/>
         <div>
