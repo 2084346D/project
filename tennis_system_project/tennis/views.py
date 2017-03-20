@@ -127,7 +127,7 @@ def make_booking(request):
           event.player = player
           event.save()
           # Consider rendering a different page
-          messages.success(request, 'Your booking was successful!')
+          messages.success(request, 'Your booking was successful!', extra_tags='alert')
        else:
             # invalid form, print problems to terminal
             print(event_form.errors)

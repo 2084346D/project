@@ -8,10 +8,11 @@
     {% endblock %}
 
     <body>
-        <h1> Welcome to the Western Tennis Club </h1>
-        <div>
+        <h1 class="text-center"> Welcome to the Western Tennis Club </h1>
+        <div class="w3-panel w3-border w3-border-green">
             Log in to get started.
-            
+            <br>
+            Once logged in, you will be able to access new buttons.
         </div>
         {% if players %}
             <ul>
