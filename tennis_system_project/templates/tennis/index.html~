@@ -9,10 +9,11 @@
 
     <body>
         <h1 class="text-center"> Welcome to the Western Tennis Club </h1>
+        <img src="{% static "images/rsz_logo.gif" %}" alt="Club logo" />
         <div class="w3-panel w3-border w3-border-green">
-            Log in to get started.
+            <center> Log in to get started. <center>
             <br>
-            Once logged in, you will be able to access new buttons.
+            <center> Once logged in, you will be able to access new buttons. </centre>
         </div>
         {% if players %}
             <ul>

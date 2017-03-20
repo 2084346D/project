@@ -3,13 +3,13 @@
 {% block body_block%}
     
     {% block title_block %}
-        <title>About the Tennis System</title>
+        About the Tennis System
     {% endblock %}
 
     <body>
-        <h1> Cool title </h1>
-        <div>
-            Some info here <br />
+        <center><h1> About the Club </h1></center>
+        <div class="w3-panel w3-border w3-border-green">
+            <center> In the heart of Glasgow's West End, the Western Health & Racquets Club is the ideal place for everyone to play sport, get fit and have a good time. We offer social tennis & squash plus coaching for all standards/ages. </center> <br />
         </div>
     </body>
 
