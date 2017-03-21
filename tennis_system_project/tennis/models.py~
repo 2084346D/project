@@ -26,7 +26,8 @@ class Player(models.Model):
     dob = models.DateField()
 
     def calc_group(self):
-       today = datetime.datetime.now()
+       day = datetime.datetime.now()
+       today = datetime.date(day.year, 4, 21)
        if today.month >= 9:
            season_end = datetime.date(today.year+1,3,31)
        elif today.month <= 3:
@@ -41,7 +42,7 @@ class Player(models.Model):
            return "red"
        elif age_in_years>=8 and age_in_years<=9:
            return "orange"
-       elif age_in_years==10 or age_in_years==11:
+       elif age_in_years>=10 or age_in_years<=11:
            return "green"
        elif age_in_years>=12:
            return "yellow"

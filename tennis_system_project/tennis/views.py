@@ -82,8 +82,8 @@ def user_login(request):
 
         else:
             # bad log in details
-            print("Invalid login details: {0}, {1}".format(username, password))
-            return HttpResponse("Invalid login details supplied.")
+            messages.add_message(request, messages.ERROR, 'Invalid log-in details, try again.')
+            return HttpResponseRedirect(reverse( 'login' ))
 
     # request is not POST, display log in form
     else:
